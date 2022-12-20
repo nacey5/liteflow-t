@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/chain1")
-public class chain1Controller {
+public class Chain1Controller {
 
     @Autowired
     private FlowExecutor flowExecutor;

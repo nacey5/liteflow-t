@@ -3,4 +3,33 @@
     <chain name="chain1">
         THEN(a, b, c);
     </chain>
+
+    <chain name="switch_chain">
+        <!--表示a只能选择b,c之一，并且是顺位-->
+        SWITCH(s_c_a).to(s_c_b, s_c_c);
+    </chain>
+
+    <!--switch根据id进行选择-->
+    <!--当a选择w1的时候，c,d会被执行-->
+    <chain name="switch_chain_by_id">
+        SWITCH(s_c_a).to(s_c_b, WHEN(s_c_c,s_c_d).id("w1"));
+    </chain>
+
+    <!--switch根据tag进行选择-->
+    <chain name="switch_chain_by_tag">
+        SWITCH(s_c_a).to(
+            s_c_b.tag("cat"),
+            s_c_c.tag("dog")
+        );
+    </chain>
+
+    <chain name="then_switch_chain">
+        <!--执行a，再转换g，优先执行b，且标签一定为td，否则不执行下顺-->
+        THEN(
+        a,
+        SWITCH(s_c_g).to(s_c_b.tag("td"), s_c_d.tag("td"))
+        );
+    </chain>
+
+
 </flow>
