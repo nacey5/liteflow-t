@@ -23,6 +23,6 @@ public class BSwitchCmp extends NodeSwitchComponent {
     @Override
     public String processSwitch() throws Exception {
         System.out.println("s_c_b:exec");
-        return "t1";
+        return "t3";
     }
 }

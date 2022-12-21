@@ -18,6 +18,6 @@ public class XSwitchCmp extends NodeSwitchComponent {
     @Override
     public String processSwitch() throws Exception {
         System.out.println("s_c_x:exec");
-        return "Au1_chain3";
+        return "w1";
     }
 }

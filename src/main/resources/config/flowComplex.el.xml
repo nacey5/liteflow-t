@@ -49,4 +49,99 @@
         WHEN(q, THEN(p, r)).id("w01");
     </chain>
 
+    <!--定义子变量:跟上面的一样-->
+    <chain name="Au2_mainChain">
+        t1 = THEN(c, WHEN(j, k));
+        w1 = WHEN(q, THEN(p, r)).id("w01");
+        t2 = THEN(h, i);
+
+        THEN(
+            a, b,
+            WHEN(t1, d, t2),
+            SWITCH(s_c_x).to(m, n, w1),
+            z
+        );
+    </chain>
+
+    <!--复杂编排规则1-->
+    <chain name="example_chain1">
+        THEN(
+            a,
+            WHEN(
+                THEN(b, c),
+                THEN(d, e, f),
+                THEN(
+                    SWITCH(s_c_g).to(
+                        THEN(h, i, WHEN(j, k)).id("t1"),
+                        THEN(l, m).id("t2")
+                    ),
+                n
+                )
+            ),
+            z
+        );
+    </chain>
+
+    <!--转换成子变量-->
+    <chain name="example_sub_chain1">
+        item1 = THEN(b, c);
+        item2 = THEN(d, e, f);
+        item3_1 = THEN(g, i, WHEN(j, k)).id("t1");
+        item3_2 = THEN(l, m).id("t2");
+        item3 = THEN(SWITCH(s_c_g).to(item3_1, item3_2), n);
+
+        THEN(
+            a,
+            WHEN(item1, item2, item3),
+            z
+        );
+    </chain>
+
+    <!--复杂编排规则2-->
+    <chain name="example_chain2">
+        THEN(
+            a
+        ,
+            SWITCH(s_c_b).to(
+                THEN(d, e, f).id("t1"),
+                THEN(
+                    c,
+                    WHEN(
+                        THEN(
+                            SWITCH(s_c_g).to(THEN(h, i).id("t2"), j),
+                            k
+                            ),
+                        THEN(l, m)
+                    )
+                ).id("t3")
+            ),
+            z
+        );
+    </chain>
+
+    <!--转换成子变量:定义自变量的时候，要注意分号-->
+    <chain name="example_sub_chain2">
+        item1 = THEN(d, e, f).id("t1");
+
+        item2_1 = THEN(
+            SWITCH(s_c_g).to(
+                THEN(h, i).id("t2"),
+                j
+            ),
+            k
+        );
+
+        item2_2 = THEN(l, m);
+
+        item2 = THEN(c, WHEN(item2_1, item2_2)).id("t3");
+
+        THEN(
+        a,
+        SWITCH(s_c_b).to(item1, item2),
+        z
+        );
+    </chain>
+
+
+
 </flow>

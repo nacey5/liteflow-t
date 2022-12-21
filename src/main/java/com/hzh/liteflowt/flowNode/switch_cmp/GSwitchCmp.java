@@ -17,7 +17,7 @@ public class GSwitchCmp extends NodeSwitchComponent {
     @Override
     public String processSwitch() throws Exception {
         System.out.println("s_c_g:exec");
-        return ":td";
+        return "t2";
 
 //        以下方式为 节点名：标签 即可特定选择
 //        return "s_c_b:td";
