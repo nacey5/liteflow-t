@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--复杂编排-->
+
+<flow>
+    <!--串行编排-->
+    <chain name="then_chain_1">
+        THEN(a, b, c, d);
+    </chain>
+
+    <!--并行编排-->
+    <chain name="when_chain_1">
+        WHEN(a, b, c);
+    </chain>
+
+    <!--串并结合-->
+    <chain name="when_chain_2">
+        THEN(
+        a,
+        WHEN(b, c, d),
+        e
+        );
+    </chain>
+
+    <chain name="when_chain_3">
+        THEN(
+        a,
+        WHEN(b, THEN(c, d)),
+        e
+        );
+    </chain>
+
+    <!--忽视错误开启，如果此时b，ex_c，d有一方出现异常一样会执行-->
+    <chain name="when_chain_4">
+        THEN(
+        a,
+        WHEN(b, ex_c, d).ignoreError(true),
+        e
+        );
+    </chain>
+
+    <!--when的任何一条分支完成就忽略其他分支，继续执行-->
+    <chain name="when_any_chain">
+        THEN(
+        a,
+        WHEN(b, THEN(c, d), e).any(true),
+        f
+            );
+    </chain>
+
+    <!--选择编排-->
+    <chain name="switch_chain_1">
+        SWITCH(s_c_x).to(b, c, d);
+    </chain>
+
+    <!--当x返回的不是abc的时候，默认执行y-->
+    <chain name="switch_chain_default">
+        SWITCH(s_c_x).TO(a, b, c).DEFAULT(df_y);
+    </chain>
+
+    <!--条件编排-->
+    <chain name="if_chain_1">
+        THEN(
+            IF(if_x, a),
+            b
+        );
+    </chain>
+
+    <chain name="if_chain_2">
+        THEN(
+            IF(if_x, a, b),
+            c
+        );
+    </chain>
+
+    <!--等价于IF(x,a,b)-->
+    <chain name="if_else_chain1">
+        IF(if_x, a).ELSE(b);
+    </chain>
+
+    <chain name="elif_if_chain1">
+        IF(if_x1, a).ELIF(if_x2, b).ELIF(if_x3, c).ELIF(if_x4, d).ELSE(THEN(m, n));
+    </chain>
+
+    <!--值得注意的是，只有IF的二元表达式后面才能跟ELIF，如果IF三元表达式后面跟ELIF，最后一个表达式会被ELIF的表达式覆盖，就比如：-->
+    <!--在新版本的测试中会出错-->
+   <!-- <chain name="elif_rule_chain1">
+        IF(if_x1, a, b).ELIF(if_x2, c).ELSE(d);
+    </chain>-->
+
+    <!--可以不用elif进行完成的三元表达-->
+    <chain name="if_not_elif_chain">
+        IF(
+            if_x1,
+            a,
+            IF(
+                if_x2,
+                b,
+                IF(if_x2, c, d)
+            )
+        );
+    </chain>
+
+    <!--for编排,表达了固定个数count:5,把(a,b)循环了5次-->
+    <chain name="for_chain_count">
+        FOR(5).DO(THEN(a, b));
+    </chain>
+
+    <!--根据f节点的个数进行编排，具体情况查看第一个文件中有关for和while的编排-->
+    <chain name="for_chain_node">
+        FOR(f_f).DO(THEN(a, b));
+    </chain>
+
+
+
+
+</flow>

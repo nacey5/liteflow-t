@@ -12,17 +12,12 @@ import com.yomahub.liteflow.core.NodeSwitchComponent;
  * @MONTH: 12
  * @DAY: 21
  */
-@LiteflowComponent("s_c_b")
-public class BSwitchCmp extends NodeSwitchComponent {
+@LiteflowComponent("s_c_x")
+public class XSwitchCmp extends NodeSwitchComponent {
 
-    /**
-     * 返回的结果表示选择了s_c_c节点
-     * @return
-     * @throws Exception
-     */
     @Override
     public String processSwitch() throws Exception {
-        System.out.println("s_c_b:exec");
-        return "t1";
+        System.out.println("s_c_x:exec");
+        return "Au1_chain3";
     }
 }

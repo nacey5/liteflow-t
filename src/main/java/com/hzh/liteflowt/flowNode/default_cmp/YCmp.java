@@ -1,4 +1,4 @@
-package com.hzh.liteflowt.flowNode;
+package com.hzh.liteflowt.flowNode.default_cmp;
 
 import com.yomahub.liteflow.annotation.LiteflowComponent;
 import com.yomahub.liteflow.core.NodeComponent;
@@ -12,10 +12,11 @@ import com.yomahub.liteflow.core.NodeComponent;
  * @MONTH: 12
  * @DAY: 20
  */
-@LiteflowComponent("d")
-public class DCmp extends NodeComponent {
+@LiteflowComponent("df_y")
+public class YCmp extends NodeComponent {
+
     @Override
     public void process() throws Exception {
-        System.out.println("exec:D");
+        System.out.println("default.exec:Y");
     }
 }

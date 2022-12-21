@@ -12,10 +12,10 @@ import com.yomahub.liteflow.core.NodeComponent;
  * @MONTH: 12
  * @DAY: 20
  */
-@LiteflowComponent("d")
-public class DCmp extends NodeComponent {
+@LiteflowComponent("r")
+public class RCmp extends NodeComponent {
     @Override
     public void process() throws Exception {
-        System.out.println("exec:D");
+        System.out.println("exec:R");
     }
 }

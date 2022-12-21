@@ -8,28 +8,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * @NAME: chain1Controller
+ * @NAME: ForController
  * @USER: DaHuangGO
- * @DATE: 2022/12/20
- * @TIME: 23:05
+ * @DATE: 2022/12/21
+ * @TIME: 15:38
  * @YEAR: 2022
  * @MONTH: 12
- * @DAY: 20
+ * @DAY: 21
  */
+
 @RestController
-@RequestMapping("/chain1")
-public class Chain1Controller {
+@RequestMapping("/for_chain")
+public class ForController {
 
     @Autowired
     private FlowExecutor flowExecutor;
 
-    @GetMapping("/thenABC")
-    public void execute2Resp(){
-        LiteflowResponse response = flowExecutor.execute2Resp("chain1", "arg");
-    }
-
-    @GetMapping("/thenABCD")
-    public void execute2Resp2(){
-        LiteflowResponse response = flowExecutor.execute2Resp("then_chain_1", "arg");
+    @GetMapping("/forChainBase")
+    public void forChainBase(){
+        LiteflowResponse response = flowExecutor.execute2Resp("for_do_chain", "arg");
     }
 }

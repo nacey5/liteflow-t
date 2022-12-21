@@ -17,6 +17,6 @@ public class CSwitchCmp extends NodeSwitchComponent {
     @Override
     public String processSwitch() throws Exception {
         System.out.println("s_c_c:exec");
-        return "null";//如果要执行，不拿直接赋值为null，否则插槽出错
+        return "d";//如果要执行，不拿直接赋值为null，否则插槽出错
     }
 }

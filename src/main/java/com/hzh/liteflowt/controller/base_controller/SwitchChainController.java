@@ -43,4 +43,9 @@ public class SwitchChainController {
     public void switchNodeThen(){
         LiteflowResponse response = flowExecutor.execute2Resp("then_switch_chain", "arg");
     }
+
+    @GetMapping("/switchDefault")
+    public void switchDefault(){
+        LiteflowResponse response = flowExecutor.execute2Resp("switch_chain_default", "arg");
+    }
 }

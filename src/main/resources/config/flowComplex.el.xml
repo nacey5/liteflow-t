@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--复杂编排-->
+
+<flow>
+
+    <chain name="cx_chain1">
+        THEN(
+            a,
+        WHEN(
+            b,
+            SWITCH(s_c_c).to(d,e)
+        ),
+            f
+        );
+    </chain>
+
+    <chain name="cx_chain2">
+        THEN(
+            a,
+            SWITCH(s_c_b).to(
+                c,
+                THEN(d, e).id("t1")
+            ),
+            f
+        );
+    </chain>
+
+    <!--子流程编排-->
+    <chain name="Au1_mainChain">
+        THEN(
+            a,
+            b,
+            WHEN(Au1_chain1, d, Au1_chain2),
+            SWITCH(s_c_x).to(m, n, Au1_chain3),
+            z
+        );
+    </chain>
+
+    <chain name="Au1_chain1">
+        THEN(c, WHEN(j, k));
+    </chain>
+
+    <chain name="Au1_chain2">
+        THEN(h, i);
+    </chain>
+
+    <chain name="Au1_chain3">
+        WHEN(q, THEN(p, r)).id("w01");
+    </chain>
+
+</flow>

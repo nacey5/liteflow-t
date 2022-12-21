@@ -2,7 +2,7 @@ server:
   port: 80
 liteflow:
   #规则文件路径
-  rule-source: config/flow.el.xml
+  rule-source: config/*.el.xml
   #-----------------以下非必须-----------------
   #liteflow是否开启，默认为true
   enable: true

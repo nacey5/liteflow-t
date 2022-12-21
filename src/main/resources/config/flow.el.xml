@@ -31,5 +31,23 @@
         );
     </chain>
 
+    <chain name="if_chain">
+        IF(if_x, a, b);
+    </chain>
+
+    <!--根据f_f,循环(a,b),如f_f(2)->(a,b),(a,b)-->
+    <chain name="for_do_chain">
+        FOR(f_f).DO(THEN(a, b));
+    </chain>
+
+    <!--条件循环-->
+    <!--当没有退出组件的时候，这是一个死循环-->
+    <chain name="while_chain">
+        WHILE(w_w).DO(THEN(a, b));
+    </chain>
+
+    <chain name="break_chain">
+        WHILE(w_w).DO(THEN(a, b)).BREAK(b_c);
+    </chain>
 
 </flow>
