@@ -1,5 +1,7 @@
 package com.hzh.liteflowt.context;
 
+import com.yomahub.liteflow.annotation.LiteflowComponent;
+
 /**
  * @NAME: OrderContext
  * @USER: DaHuangGO
@@ -9,6 +11,8 @@ package com.hzh.liteflowt.context;
  * @MONTH: 12
  * @DAY: 22
  */
+
+@LiteflowComponent
 public class OrderContext {
 
 }
