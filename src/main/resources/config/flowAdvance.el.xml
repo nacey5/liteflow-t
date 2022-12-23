@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow>
+    <!--组件的高级功能-->
+    //其实这样子也没什么问题
+    <!--前置处理-->
+    <chain name="pre_chain1">
+        THEN(
+            //执行之前要干的事，但是我感觉这样的注释没有<!---->来的更加方便
+            PRE(p1, p2),
+            a, b, c,
+            WHEN(d, e)
+        );
+    </chain>
+
+    <!--后置处理-->
+    <chain name="after_chain1">
+        THEN(
+            a, b, c,
+            FINALLY(f1, f2)
+        );
+    </chain>
+
+    <!--等价于上面两个，pre和finally是任意层级的-->
+    <chain name="pre_and_after_chain1">
+        THEN(
+        FINALLY(f1, f2), c, PRE(a), d
+        );
+    </chain>
+
+    <!--例如:输出结果是p1==>p2==>p1==>p2==>a==>b==>c==>f1==>f2==>f1-->
+    <chain name="pre_and_after_example_chain">
+        c1 = THEN(PRE(p1, p2), THEN(a, b, c), FINALLY(f1, f3));
+        THEN(PRE(p0, p2), c1, FINALLY(f2));
+    </chain>
+
+    <!--只有添加了node(),当查找不到组件的时候才会采用替补组件-->
+    <!--请注意，在这个地方，替补组件是可以多重代替的-->
+    <chain name="sub_chain_index1">
+        THEN(node("A"), b, c, node("D"));
+    </chain>
+
+    <chain name="data_chain1">
+        cmpData = '{"name":"jack","age":27,"birth":"1995-10-01"}';
+
+        THEN(a, data_a.data(cmpData).tag("dt_a"), c);
+    </chain>
+
+    <chain name="data_chain2">
+        cmpData = '{"name":"rose","age":20,"birth":"1997-07-01"}';
+
+        WHEN(c, data_a.data(cmpData));
+    </chain>
+
+    <!--私有投递-->
+    <chain name="pri_submit_chain1">
+        THEN(
+            submit_a,
+            WHEN(asp_b, asp_b, asp_b, asp_b, asp_b),
+            c
+        );
+    </chain>
+
+
+</flow>
