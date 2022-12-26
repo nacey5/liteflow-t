@@ -57,4 +57,9 @@ public class ComplexController {
             System.out.println("||-------------------------------||");
         }
     }
+
+    @GetMapping("/sub_comp_chain1")
+    public void thread_chain1(){
+        flowExecutor.execute2Future("pri_submit_chain1","arg");
+    }
 }

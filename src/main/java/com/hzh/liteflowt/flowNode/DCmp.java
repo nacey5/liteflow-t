@@ -1,7 +1,9 @@
 package com.hzh.liteflowt.flowNode;
 
+import com.hzh.liteflowt.excutor.CustomerMyNodeExecutor;
 import com.yomahub.liteflow.annotation.LiteflowComponent;
 import com.yomahub.liteflow.core.NodeComponent;
+import com.yomahub.liteflow.flow.executor.NodeExecutor;
 
 /**
  * @NAME: ACmp
@@ -17,5 +19,10 @@ public class DCmp extends NodeComponent {
     @Override
     public void process() throws Exception {
         System.out.println("exec:D");
+    }
+
+    @Override
+    public Class<? extends NodeExecutor> getNodeExecutorClass() {
+        return CustomerMyNodeExecutor.class;
     }
 }

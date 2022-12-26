@@ -60,5 +60,14 @@
         );
     </chain>
 
+    <!--指定线程池-->
+    <!--<chain name="exe_thread_chain1">
+        WHEN(a, b).threadPool("com.hzh.liteflowt.executor.CustomThreadBuilder1);
+    </chain>
+
+    <chain name="exe_thread_chain2">
+        WHEN(a, b).threadPool("com.hzh.liteflowt.executor.CustomThreadBuilder2);
+    </chain>-->
+
 
 </flow>
